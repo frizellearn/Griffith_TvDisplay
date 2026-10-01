@@ -284,6 +284,158 @@ hr{border:0;border-top:1px solid #e6edf7;margin:20px 0}
   .display-subject{letter-spacing:-2px}
   .now-main{min-height:330px}
 }
+
+/* FLOATING DISPLAY MODE */
+#displayView{
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
+    repeating-linear-gradient(0deg,#e6edf7 0,#e6edf7 1px,transparent 1px,transparent 34px),
+    repeating-linear-gradient(90deg,#e6edf7 0,#e6edf7 1px,transparent 1px,transparent 34px);
+  color:#0f172a;
+  position:relative;
+  overflow:hidden;
+}
+.workspace-note{
+  position:absolute;left:38px;top:38px;max-width:620px;
+  color:#64748b;font-weight:700;
+}
+.workspace-note h1{
+  color:#1e293b;font-size:42px;margin:0 0 8px;letter-spacing:-1.5px
+}
+.floating-display{
+  position:absolute;
+  top:34px;right:34px;
+  width:min(760px,calc(100vw - 40px));
+  max-height:calc(100vh - 90px);
+  border-radius:28px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#08111f,#0d1b30 58%,#10213a);
+  color:#fff;
+  box-shadow:0 28px 80px rgba(15,23,42,.35);
+  border:1px solid rgba(255,255,255,.12);
+  z-index:25;
+}
+.floating-display.compact{
+  width:420px;
+}
+.float-dragbar{
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:0 14px 0 18px;
+  background:rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  cursor:move;
+  user-select:none;
+}
+.float-title{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:1000;letter-spacing:1.2px;color:#c5d8f8
+}
+.float-actions{
+  display:flex;gap:6px
+}
+.float-btn{
+  width:30px;height:30px;border:0;border-radius:10px;
+  background:rgba(255,255,255,.10);color:#fff;font-weight:1000;cursor:pointer
+}
+.float-btn:hover{background:rgba(255,255,255,.18)}
+.float-body{
+  padding:22px;
+  overflow:auto;
+  max-height:calc(100vh - 140px);
+}
+.float-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px
+}
+.float-school{font-size:15px;font-weight:1000;letter-spacing:.6px}
+.float-date{font-size:12px;color:#9fb0c7;font-weight:800;margin-top:3px}
+.float-clock{font-size:44px;font-weight:1000;letter-spacing:-2px;color:#dbeafe}
+.float-now{
+  border-radius:24px;padding:24px;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb 62%,#3b82f6)
+}
+.float-now.break{background:linear-gradient(135deg,#a65d00,#d97706 62%,#f59e0b)}
+.float-now.event{background:linear-gradient(135deg,#6d28d9,#7c3aed 62%,#8b5cf6)}
+.float-label{font-size:11px;font-weight:1000;letter-spacing:1.4px;color:#cfe0ff}
+.float-subject{
+  font-size:clamp(34px,5vw,62px);
+  font-weight:1000;line-height:.95;letter-spacing:-2px;margin:12px 0 6px
+}
+.float-teacher{font-size:20px;font-weight:800;color:#e5efff}
+.float-time{
+  display:inline-flex;margin-top:16px;padding:9px 13px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.11);
+  font-weight:1000
+}
+.float-lower{
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:14px;margin-top:14px
+}
+.float-card{
+  padding:15px;border-radius:18px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1)
+}
+.float-card-title{font-size:10px;font-weight:1000;letter-spacing:1.1px;color:#93b4ea}
+.float-next-subject{font-size:22px;font-weight:1000;margin:8px 0 3px}
+.float-meta{font-size:12px;color:#c4d2e6;font-weight:800}
+.float-today-table{
+  width:100%;border-collapse:separate;border-spacing:0 6px;font-size:11px
+}
+.float-today-table th{
+  text-align:left;color:#93b4ea;font-size:9px;text-transform:uppercase;letter-spacing:.7px;padding:0 7px
+}
+.float-today-table td{
+  padding:7px;
+  background:rgba(255,255,255,.07);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  color:#d7e2f1;font-weight:800
+}
+.float-today-table td:first-child{border-radius:9px 0 0 9px;white-space:nowrap}
+.float-today-table td:last-child{border-radius:0 9px 9px 0}
+.float-today-table tr.active td{background:#fff;color:#10213a}
+.float-ticker{
+  margin:14px -22px -22px;
+  height:40px;
+  display:flex;align-items:center;overflow:hidden;
+  background:#fff;color:#0f172a;
+}
+.float-ticker-track{
+  white-space:nowrap;padding-left:100%;
+  display:inline-block;animation:floatTicker 18s linear infinite;
+  font-weight:1000;font-size:12px
+}
+@keyframes floatTicker{to{transform:translateX(-100%)}}
+.floating-display.compact .float-lower,
+.floating-display.compact .float-ticker{
+  display:none
+}
+.floating-display.compact .float-body{padding:16px}
+.floating-display.compact .float-now{padding:18px}
+.floating-display.compact .float-subject{font-size:34px}
+.floating-display.compact .float-clock{font-size:34px}
+.display-launcher{
+  position:fixed;right:18px;bottom:18px;z-index:30;
+  border:0;border-radius:999px;padding:12px 15px;
+  background:#111827;color:#fff;font-weight:1000;
+  box-shadow:0 14px 34px rgba(15,23,42,.25);
+  cursor:pointer
+}
+.display-launcher.hidden{display:none}
+@media(max-width:820px){
+  .floating-display{
+    left:12px!important;right:auto!important;
+    width:calc(100vw - 24px)!important;
+    top:12px!important
+  }
+  .float-lower{grid-template-columns:1fr}
+  .workspace-note{display:none}
+}
+
 </style>
 </head>
 <body>
@@ -447,54 +599,66 @@ hr{border:0;border-top:1px solid #e6edf7;margin:20px 0}
 
 <!-- DISPLAY VIEW -->
 <section id="displayView" class="hidden">
-  <main class="display-stage">
-    <section class="display-top">
-      <div>
-        <div class="display-school">SMA SCHOOL TV</div>
-        <div class="display-date" id="dateLabel">-</div>
-      </div>
-      <div class="display-clock" id="clock">00:00</div>
-    </section>
-
-    <section class="now-panel">
-      <div class="now-main" id="mainCard">
-        <div class="display-label" id="statusLabel">SEDANG BERLANGSUNG</div>
-        <div class="display-subject" id="currentTitle">Belum ada kegiatan</div>
-        <div class="display-teacher" id="currentTeacher">-</div>
-        <div class="display-time" id="currentTime">--:-- - --:--</div>
-      </div>
-
-      <div class="side-stack">
-        <div class="side-card">
-          <div class="side-title">SELANJUTNYA</div>
-          <div class="side-subject" id="nextTitle">Tidak ada jadwal</div>
-          <div class="side-meta" id="nextTeacher">-</div>
-          <div class="side-meta" id="nextTime" style="margin-top:8px">--:--</div>
-        </div>
-
-        <div class="side-card">
-          <div class="side-title">JADWAL HARI INI</div>
-          <div class="today-table-wrap">
-            <table class="today-table" aria-label="Jadwal hari ini">
-              <thead>
-                <tr>
-                  <th>Jam</th>
-                  <th>Kegiatan</th>
-                  <th>Guru / Status</th>
-                </tr>
-              </thead>
-              <tbody id="todayTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="ticker">
-    <div class="ticker-track" id="tickerText">📢 Selamat datang di sekolah • Semoga harimu menyenangkan!</div>
+  <div class="workspace-note">
+    <h1>Whiteboard / App Area</h1>
+    <p>Anggap area ini sebagai papan tulis, PowerPoint, browser, atau aplikasi lain. School TV sekarang muncul sebagai floating popup.</p>
   </div>
 
+  <section id="floatingDisplay" class="floating-display">
+    <header id="floatDragbar" class="float-dragbar">
+      <div class="float-title">📺 SCHOOL TV DISPLAY</div>
+      <div class="float-actions">
+        <button id="floatCompactBtn" class="float-btn" title="Compact">—</button>
+        <button id="floatHideBtn" class="float-btn" title="Hide">×</button>
+      </div>
+    </header>
+
+    <div class="float-body">
+      <div class="float-top">
+        <div>
+          <div class="float-school">SMA SCHOOL TV</div>
+          <div class="float-date" id="dateLabel">-</div>
+        </div>
+        <div class="float-clock" id="clock">00:00</div>
+      </div>
+
+      <div class="float-now" id="mainCard">
+        <div class="float-label" id="statusLabel">SEDANG BERLANGSUNG</div>
+        <div class="float-subject" id="currentTitle">Belum ada kegiatan</div>
+        <div class="float-teacher" id="currentTeacher">-</div>
+        <div class="float-time" id="currentTime">--:-- - --:--</div>
+      </div>
+
+      <div class="float-lower">
+        <div class="float-card">
+          <div class="float-card-title">SELANJUTNYA</div>
+          <div class="float-next-subject" id="nextTitle">Tidak ada jadwal</div>
+          <div class="float-meta" id="nextTeacher">-</div>
+          <div class="float-meta" id="nextTime" style="margin-top:6px">--:--</div>
+        </div>
+
+        <div class="float-card">
+          <div class="float-card-title">JADWAL HARI INI</div>
+          <table class="float-today-table" aria-label="Jadwal hari ini">
+            <thead>
+              <tr>
+                <th>Jam</th>
+                <th>Kegiatan</th>
+                <th>Guru / Status</th>
+              </tr>
+            </thead>
+            <tbody id="todayTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="float-ticker">
+        <div class="float-ticker-track" id="tickerText">📢 Selamat datang di sekolah • Semoga harimu menyenangkan!</div>
+      </div>
+    </div>
+  </section>
+
+  <button id="displayLauncher" class="display-launcher hidden">📺 Show School TV</button>
   <button class="mode-shortcut" id="backAdminBtn">⚙ Admin</button>
 </section>
 
@@ -839,7 +1003,7 @@ function renderDisplay(){
   const next=items.find(x=>parseTime(x.start)>minutes);
 
   const card=document.getElementById('mainCard');
-  card.className='now-main';
+  card.className='float-now';
 
   if(current){
     document.getElementById('currentTitle').textContent=current.title;
@@ -943,6 +1107,64 @@ function renderPopup(){
   }
 }
 document.getElementById('dismissPopupBtn').addEventListener('click',()=>setPopup(null));
+
+
+/* FLOATING DISPLAY CONTROLS */
+const floatingDisplay=document.getElementById('floatingDisplay');
+const floatDragbar=document.getElementById('floatDragbar');
+const floatCompactBtn=document.getElementById('floatCompactBtn');
+const floatHideBtn=document.getElementById('floatHideBtn');
+const displayLauncher=document.getElementById('displayLauncher');
+
+let floatCompact=false;
+let floatDragging=false;
+let floatStartX=0,floatStartY=0,floatStartLeft=0,floatStartTop=0;
+
+floatCompactBtn.addEventListener('click',()=>{
+  floatCompact=!floatCompact;
+  floatingDisplay.classList.toggle('compact',floatCompact);
+  floatCompactBtn.textContent=floatCompact?'□':'—';
+});
+
+floatHideBtn.addEventListener('click',()=>{
+  floatingDisplay.classList.add('hidden');
+  displayLauncher.classList.remove('hidden');
+});
+
+displayLauncher.addEventListener('click',()=>{
+  floatingDisplay.classList.remove('hidden');
+  displayLauncher.classList.add('hidden');
+});
+
+floatDragbar.addEventListener('pointerdown',(e)=>{
+  if(e.target.closest('button')) return;
+  floatDragging=true;
+  floatDragbar.setPointerCapture(e.pointerId);
+  const rect=floatingDisplay.getBoundingClientRect();
+  floatStartX=e.clientX;
+  floatStartY=e.clientY;
+  floatStartLeft=rect.left;
+  floatStartTop=rect.top;
+  floatingDisplay.style.right='auto';
+});
+
+floatDragbar.addEventListener('pointermove',(e)=>{
+  if(!floatDragging) return;
+  const dx=e.clientX-floatStartX;
+  const dy=e.clientY-floatStartY;
+  const maxLeft=Math.max(0,window.innerWidth-floatingDisplay.offsetWidth);
+  const maxTop=Math.max(0,window.innerHeight-floatingDisplay.offsetHeight);
+  const left=Math.max(0,Math.min(maxLeft,floatStartLeft+dx));
+  const top=Math.max(0,Math.min(maxTop,floatStartTop+dy));
+  floatingDisplay.style.left=`${left}px`;
+  floatingDisplay.style.top=`${top}px`;
+});
+
+floatDragbar.addEventListener('pointerup',(e)=>{
+  floatDragging=false;
+  try{floatDragbar.releasePointerCapture(e.pointerId)}catch(err){}
+});
+
 
 /* SYNC + SHORTCUTS */
 window.addEventListener('storage',()=>{renderAdmin();renderDisplay();renderPopup()});
